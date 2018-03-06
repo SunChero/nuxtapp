@@ -1,0 +1,35 @@
+{
+  "name": "nuxtapp",
+  "version": "1.0.0",
+  "description": "My classy Nuxt.js project",
+  "author": "Sun",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^4.4.0",
+    "ajv": "^6.2.0",
+    "child_process": "^1.0.2",
+    "express": "^4.15.3",
+    "firebase": "^4.10.1",
+    "fs": "0.0.1-security",
+    "html-to-text": "^3.3.0",
+    "jsdom": "^11.6.2",
+    "moment": "^2.20.1",
+    "net": "^1.0.2",
+    "nuxt": "^1.0.0",
+    "tls": "0.0.1",
+    "vuetify": "^0.17.3",
+    "vuexfire": "^2.3.0"
+  },
+  "devDependencies": {
+    "cross-env": "^5.0.1",
+    "nodemon": "^1.11.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1"
+  }
+}

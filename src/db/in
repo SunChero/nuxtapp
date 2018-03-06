@@ -1,0 +1,22 @@
+//init firebase
+const firebase = require('firebase');
+var config = {
+    apiKey: "AIzaSyBnPkJY7_Tmvyr9xNbZMgiAwwMk72LsQG4",
+    authDomain: "laval2018-c3de0.firebaseapp.com",
+    databaseURL: "https://laval2018-c3de0.firebaseio.com",
+    projectId: "laval2018-c3de0",
+    storageBucket: "laval2018-c3de0.appspot.com",
+    messagingSenderId: "330106268919"
+  };
+
+  module.exports = function(res){
+    let app = firebase.initializeApp(config);
+    let db = app.database();
+    let val = firebase.database().ref('/users/1').set({
+        username: 'name',
+        email: 'sun@sun.com',
+     });
+     
+   
+    res.send(val);
+  }
