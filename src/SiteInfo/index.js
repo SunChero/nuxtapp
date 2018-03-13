@@ -1,7 +1,7 @@
 // open main page and load  all values from this same page
 const  jsdom = require('jsdom');
 const {JSDOM} = jsdom;
-const getbroadcasts =  require('./broadcasts');
+const getbroadcasts =  require('./Broadcasts');
 const getcategories = require('./Categories');
 const getsubcategories = require('./SubCategories');
 const getclients = require('./Clients');
