@@ -11,7 +11,7 @@ var config = {
 };
 
 if(firebase.apps.length == 0 ) {
-  console.log('initializing apps')
+ // console.log('initializing apps')
   firebase.initializeApp(config);
   
 }
@@ -19,7 +19,7 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       items: [],
-      livelocations : 0,
+      locations : 0,
       loading : false,
       db : null,
       orgs : [],
@@ -32,11 +32,11 @@ const createStore = () => {
       }
     },
     mutations: {
-      setLiveLocations (state, payload) {
+      setLocations (state, payload) {
         state.loading = false;
         state.items  = payload;
       },
-      setOrgs(state , payload){
+      setOrganizations(state , payload){
         state.loading = false;
         state.orgs  = payload;
       },
@@ -51,6 +51,10 @@ const createStore = () => {
       setBroadcasts(state,payload){
         state.loading = false;
         state.items  = payload;
+      },
+      setNews(state,payload){
+        state.loading = false;
+        state.items  = payload;
       }
       
       
@@ -58,27 +62,32 @@ const createStore = () => {
     actions: {
       async fetchLocations (context, payload) {
         context.state.loading = true;
-        let data = await axios('/loc')
-          .then( result => context.commit('setLiveLocations' , result.data) );
+        let data = await axios('/_web/src/locations')
+          .then( result => context.commit('setLocations' , result.data) );
         },
       async WWW_ASK_ORGS(context , payload){
         context.state.loading = true;
-        let data = await axios('/orgs')
-          .then( result => context.commit('setOrgs' , result.data) );
+        let data = await axios('/_web/src/organizations')
+          .then( result => context.commit('setOrganizations' , result.data) );
       },
       async WWW_ASK_INFO(context , payload){
         context.state.loading = true;
-        let data = await axios('/info')
+        let data = await axios('/_web/src/info')
           .then( result => context.commit('setInfo' , result.data) );
       },
       async WWW_ASK_EVENTS(context , payload){
         context.state.loading = true;
-        let data = await axios('/evts')
+        let data = await axios('/_web/src/events')
           .then( result => context.commit('setEvents' , result.data) );
+      },
+      async WWW_ASK_NEWS(context , payload){
+        context.state.loading = true;
+        let data = await axios('/_web/src/news')
+          .then( result => context.commit('setNews' , result.data) );
       },
       async WWW_ASK_BROADCASTS(context , payload){
         context.state.loading = true;
-        let data = await axios('/broadcast')
+        let data = await axios('/_web/src/info/broadcast')
           .then( result => context.commit('setBroadcasts' , result.data) );
       },
       async DB_SAVE_ORGS(context){
@@ -101,6 +110,14 @@ const createStore = () => {
         context.state.items.broadcasts.map((item)=>{
           console.log(item)
           db.ref('/broadcasts/').push(item);
+        })
+      },
+      async DB_SAVE_NEWS(context){
+        let app = firebase.apps[0];
+        let db = app.database();
+        context.state.items.map((item)=>{
+          console.log(item)
+          db.ref('/news/').push(item);
         })
       },
       async DB_SAVE_DISCOVERIES(context){

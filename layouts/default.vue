@@ -50,7 +50,6 @@
             <v-list-tile-content>
               <v-list-tile-title>
                 <a :href="item.link"> {{item.text}}</a>
-                
               </v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
@@ -189,7 +188,7 @@
           { icon: 'contacts', text: 'broadcasts' , link: '/broadcasts' },
            { icon: 'contacts', text: 'discoveries' , link: '/discoveries' },
           { icon: 'contacts', text: 'Tags' , link: '/tags' },
-         
+         { icon: 'contacts', text: 'News' , link: '/news' },
         { icon: 'history', text: 'Frequently contacted', link: 'http://' },
         { icon: 'content_copy', text: 'Duplicates' , link: 'http://'},
         {
